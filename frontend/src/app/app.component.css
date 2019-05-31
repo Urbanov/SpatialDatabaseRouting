@@ -1,0 +1,22 @@
+.menu {
+  position: absolute;
+  z-index: 1;
+  background-color: #ffffff;
+  padding: 0 30px 15px 30px;
+  left: 20px;
+  top: 20px;
+  border: 1px solid #aaaaaa;
+  width: 300px;
+}
+
+.map {
+  background-color: #cccccc;
+}
+
+.form {
+  width: 100%;
+}
+
+.button {
+  margin-top: 10px;
+}

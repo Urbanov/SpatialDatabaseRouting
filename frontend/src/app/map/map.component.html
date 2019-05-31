@@ -1,0 +1,51 @@
+<aol-map [height]="'100%'" (onClick)="handleClick($event)">
+  <aol-interaction-default></aol-interaction-default>
+
+  <aol-view [zoom]="10">
+    <aol-coordinate [x]="21" [y]="52" [srid]="'EPSG:4326'"></aol-coordinate>
+  </aol-view>
+
+  <aol-layer-tile [opacity]="1">
+    <aol-source-osm></aol-source-osm>
+  </aol-layer-tile>
+
+  <aol-layer-vector>
+    <aol-source-vector>
+      <aol-feature *ngFor="let road of roads">
+        <aol-geometry-linestring>
+          <aol-collection-coordinates [coordinates]="road.coordinates" [srid]="'EPSG:4326'">
+          </aol-collection-coordinates>
+        </aol-geometry-linestring>
+        <aol-style>
+          <aol-style-stroke [width]="'3'" [color]="road.special ? '#ff4a63' : '#0bc4ff'"></aol-style-stroke>
+        </aol-style>
+      </aol-feature>
+
+      <aol-feature *ngIf="source">
+        <aol-geometry-point>
+          <aol-coordinate [x]="source.longitude" [y]="source.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
+        </aol-geometry-point>
+        <aol-style>
+          <aol-style-circle [radius]="6">
+            <aol-style-stroke [color]="'black'" [width]="2"></aol-style-stroke>
+            <aol-style-fill [color]="'#00ff00'"></aol-style-fill>
+          </aol-style-circle>
+        </aol-style>
+      </aol-feature>
+
+      <aol-feature *ngIf="target">
+        <aol-geometry-point>
+          <aol-coordinate [x]="target.longitude" [y]="target.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
+        </aol-geometry-point>
+        <aol-style>
+          <aol-style-circle [radius]="6">
+            <aol-style-stroke [color]="'black'" [width]="2"></aol-style-stroke>
+            <aol-style-fill [color]="'#ff0000'"></aol-style-fill>
+          </aol-style-circle>
+        </aol-style>
+      </aol-feature>
+
+    </aol-source-vector>
+  </aol-layer-vector>
+
+</aol-map>

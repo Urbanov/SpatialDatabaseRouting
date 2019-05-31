@@ -1,0 +1,16 @@
+<block-ui>
+  <div class="menu">
+    <p *ngIf="lengthSum" class="mat-body">Długość odcinków widokowych w znalezionej trasie: {{ (lengthSum / 1000).toFixed(2) }} km.</p>
+    <form>
+      <mat-form-field class="form">
+        <input matInput [(ngModel)]="lengthThreshold" name="lengthThreshold" type="number" autocomplete="off">
+        <mat-hint align="start"><strong>Minimalna długość odcinków widokowych</strong> </mat-hint>
+        <mat-hint align="end">[km]</mat-hint>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" class="button" (click)="updateRoute()" [disabled]="!isDataFilled()">Wyznacz trasę</button>
+  </div>
+  <div class="map">
+    <app-map (clear)="setLengthSum(null)"></app-map>
+  </div>
+</block-ui>
