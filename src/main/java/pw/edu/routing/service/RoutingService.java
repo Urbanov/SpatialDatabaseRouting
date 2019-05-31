@@ -104,6 +104,6 @@ public class RoutingService {
             .orElse(0);
 
         route.subList(index, toRemove.size() + index).clear();
-        route.addAll(toAdd);
+        route.addAll(index, toAdd);
     }
 }
